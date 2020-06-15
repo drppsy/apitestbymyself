@@ -24,9 +24,9 @@ class OperaExcel():
         return table.nrows
 
     # 基于行号和列号，获取对应单元格的内容
-    def get_cell_value(self,colid,rowid):
+    def get_cell_value(self,rowid,colid):
         table = self.table
-        cell_value = table.cell_value(colid,rowid)
+        cell_value = table.cell_value(rowid,colid)
         return cell_value
 
     # 根据列号，获取该列的内容
@@ -65,31 +65,39 @@ class OperaExcel():
         sheet.write(row,col,value)
         excel.save(self.file_name)
 
-# 单元测试
-def test_opera_excel():
-    excel = OperaExcel()
-    lines = excel.get_table_lines()
-    assert lines == 3
 
-    cell_value = excel.get_cell_value(1,2)
-    assert "apitest.xiniujiao.net" in cell_value
 
-    col_values = excel.get_clodata_by_cloid()
-    print(col_values)
+if __name__ == '__main__':
+    opers = OperaExcel()
 
-    row_data = excel.get_rowdata_by_rowid(1)
-    print(row_data)
 
-    rowid = excel.get_rowid_by_cell_value("yxsq002")
-    print(rowid)
+# # 单元测试
+# def test_opera_excel():
+#     excel = OperaExcel()
+#     lines = excel.get_table_lines()
+#     assert lines == 3
+#
+#     cell_value = excel.get_cell_value(1,2)
+#     assert "apitest.xiniujiao.net" in cell_value
+#
+#     col_values = excel.get_clodata_by_cloid()
+#     print(col_values)
+#
+#     row_data = excel.get_rowdata_by_rowid(1)
+#     print(row_data)
+#
+#     rowid = excel.get_rowid_by_cell_value("yxsq002")
+#     print(rowid)
+#
+#     rowdata = excel.get_rowdata_by_cell_value("yxsq002")
+#     print(rowdata)
+#
+#     write_data = excel.write_value(2,9,'pass')
+#     cell_value = excel.get_cell_value(2,9)
+#
+# test_opera_excel()
 
-    rowdata = excel.get_rowdata_by_cell_value("yxsq002")
-    print(rowdata)
 
-    write_data = excel.write_value(2,9,'pass')
-    cell_value = excel.get_cell_value(2,9)
-
-test_opera_excel()
 
 
 
