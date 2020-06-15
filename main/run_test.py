@@ -1,3 +1,4 @@
+#coding:utf-8
 import sys
 sys.path.append("D:/FETA/apitestbymyself")
 from data_config.get_data import GetData
@@ -19,8 +20,11 @@ class RunTest():
                 method = self.testcases.get_request_method(i)
                 request_data = self.testcases.get_request_data(i)
                 headers = self.testcases.get_headers(i)
+                # print(headers)
                 # print(type(headers))
-                res = self.run.run_main(url,method,request_data,headers)
+                self.run.run_main(url,method,request_data,headers)
 
-run = RunTest()
-res = run.test_method()
+
+if __name__ == "__main__":
+    run = RunTest()
+    res = run.test_method()
