@@ -44,8 +44,7 @@ class GetData():
             return None
         else:
             headers = {}
-            headers["Access-Token"] = token
-            # print(type(headers))
+            headers['Access-Token'] = token
             return headers
 
     def get_request_data(self,rowid):
