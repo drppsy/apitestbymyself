@@ -1,6 +1,8 @@
 from . import data_config
 # import data_config
 from util import operate_excel
+from util import opera_json
+import json
 
 class GetData():
 
@@ -11,7 +13,6 @@ class GetData():
         colid = data_config.id_colid()
         case_id = self.excel.get_cell_value(rowid,colid)
         return case_id
-
 
     def get_case_lines(self):
         case_lines = self.excel.get_table_lines()
@@ -47,15 +48,21 @@ class GetData():
             headers['Access-Token'] = token
             return headers
 
-    def get_request_data(self,rowid):
+    def get_request_data_filed(self,rowid):
         colid = data_config.request_data_colid()
-        request_data = self.excel.get_cell_value(rowid,colid)
-        return request_data
+        data = self.excel.get_cell_value(rowid,colid)
+        return data
 
     def get_expect(self,rowid):
         colid = data_config.expect_colid()
         expect = self.excel.get_cell_value(rowid,colid)
         return expect
+
+    def get_request_data(self,rowid):
+        opjson = opera_json.OperaJson()
+        request_data = opjson.get_data(self.get_request_data_filed(rowid))
+        request_data = json.dumps(request_data)
+        return request_data
 
 # def test_get_data():
 #     testcases = GetData()
@@ -83,5 +90,11 @@ class GetData():
 #
 #     expect = testcases.get_expect(1)
 #     print(expect)
+#
+#     request_data_field = testcases.get_request_data_filed(1)
+#     print(request_data_field)
+#
+#     request_data = testcases.get_request_data(1)
+#     print(request_data)
 #
 # test_get_data()

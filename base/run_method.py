@@ -6,7 +6,7 @@ class RunMethod():
     def run_post(self,url,data,headers=None):
         res = None
         if headers is not None:
-            res = requests.post(url=url,data = data,headers=headers)
+            res = requests.post(url=url,data=data,headers=headers)
         else:
             res = requests.post(url=url,data=data)
         return res.json()

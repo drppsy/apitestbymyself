@@ -1,9 +1,12 @@
 #coding:utf-8
 import sys
+import logging
+logging.disable(level=logging.DEBUG)
+logging.basicConfig(level=logging.DEBUG,format=' %(asctime)s - %(levelname)s - %(message)s')
 sys.path.append("D:/FETA/apitestbymyself")
 from data_config.get_data import GetData
 from base import run_method
-import json
+
 
 class RunTest():
 
@@ -20,11 +23,11 @@ class RunTest():
                 method = self.testcases.get_request_method(i)
                 request_data = self.testcases.get_request_data(i)
                 headers = self.testcases.get_headers(i)
-                # print(headers)
-                # print(type(headers))
                 self.run.run_main(url,method,request_data,headers)
 
 
 if __name__ == "__main__":
     run = RunTest()
     res = run.test_method()
+
+logging.debug('End of program')
