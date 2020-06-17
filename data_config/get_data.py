@@ -1,100 +1,83 @@
-from . import data_config
-# import data_config
-from util import operate_excel
-from util import opera_json
+from utils import operate_excel
+from utils import opera_json
 import json
+from . import global_data_var
+# import global_data_var
+
 
 class GetData():
 
     def __init__(self):
         self.excel = operate_excel.OperaExcel()
 
-    def get_case_id(self,rowid):
-        colid = data_config.id_colid()
-        case_id = self.excel.get_cell_value(rowid,colid)
-        return case_id
+    def get_lines(self):
+        lines = self.excel.get_lines()
+        return lines
 
-    def get_case_lines(self):
-        case_lines = self.excel.get_table_lines()
-        return case_lines
-
-    def get_case_url(self,rowid):
-        colid = data_config.url_colid()
-        url = self.excel.get_cell_value(rowid,colid)
-        return url
-
-    def get_case_is_run(self,rowid):
-        colid = data_config.is_run_colid()
-        is_run = self.excel.get_cell_value(rowid,colid)
+    def get_is_run(self,rowid):
+        colid = global_data_var.get_case_is_run_colid()
         flag = None
-        if is_run == "yes":
+        is_run = self.excel.get_cell_value(rowid,colid)
+        if is_run == 'yes':
             flag = True
         else:
             flag = False
         return flag
 
+    def get_request_url(self,rowid):
+        colid = global_data_var.get_case_url_colid()
+        url = self.excel.get_cell_value(rowid,colid)
+        return url
+
     def get_request_method(self,rowid):
-        colid = data_config.request_method_colid()
+        colid = global_data_var.get_case_request_method()
         request_method = self.excel.get_cell_value(rowid,colid)
         return request_method
 
-    def get_headers(self,rowid):
-        colid = data_config.headers_colid()
-        token = self.excel.get_cell_value(rowid,colid)
-        if token == "no":
-            return None
-        else:
-            headers = {}
-            headers['Access-Token'] = token
-            return headers
-
-    def get_request_data_filed(self,rowid):
-        colid = data_config.request_data_colid()
-        data = self.excel.get_cell_value(rowid,colid)
-        return data
+    def get_request_data_field(self,rowid):
+        colid = global_data_var.get_case_request_data_colid()
+        request_data_field = self.excel.get_cell_value(rowid,colid)
+        return request_data_field
 
     def get_expect(self,rowid):
-        colid = data_config.expect_colid()
+        colid = global_data_var.get_case_expect_colid()
         expect = self.excel.get_cell_value(rowid,colid)
         return expect
 
     def get_request_data(self,rowid):
-        opjson = opera_json.OperaJson()
-        request_data = opjson.get_data(self.get_request_data_filed(rowid))
+        request_data_field = self.get_request_data_field(rowid)
+        request_data = opera_json.OperaJson().get_data(request_data_field)
         request_data = json.dumps(request_data)
         return request_data
 
+    def get_headers(self,rowid):
+        colid = global_data_var.get_case_headers_colid()
+        token = self.excel.get_cell_value(rowid,colid)
+        headers = {}
+        headers['Access-Token'] = token
+        return headers
+
 # def test_get_data():
-#     testcases = GetData()
+#     data = GetData()
+#     lines = data.get_lines()
+#     print(lines)
 #
-#     caseid = testcases.get_case_id(1)
-#     print(caseid)
-#
-#     case_lines = testcases.get_case_lines()
-#     print(case_lines)
-#
-#     case_url = testcases.get_case_url(1)
-#     print(case_url)
-#
-#     is_run = testcases.get_case_is_run(1)
+#     is_run = data.get_is_run(1)
 #     print(is_run)
 #
-#     request_method = testcases.get_request_method(1)
+#     url = data.get_request_url(1)
+#     print(url)
+#
+#     request_method = data.get_request_method(1)
 #     print(request_method)
 #
-#     headers = testcases.get_headers(2)
-#     print(headers)
-#
-#     request_data = testcases.get_request_data(1)
+#     request_data = data.get_request_data(1)
 #     print(request_data)
 #
-#     expect = testcases.get_expect(1)
+#     expect = data.get_expect(1)
 #     print(expect)
-#
-#     request_data_field = testcases.get_request_data_filed(1)
-#     print(request_data_field)
-#
-#     request_data = testcases.get_request_data(1)
+
+#     request_data = data.get_request_data(1)
 #     print(request_data)
 #
 # test_get_data()
