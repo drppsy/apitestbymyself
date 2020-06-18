@@ -57,6 +57,34 @@ class GetData():
         headers['Access-Token'] = token
         return headers
 
+    def write_result(self,rowid,value):
+        colid = global_data_var.get_case_result_colid()
+        self.excel.write_data(rowid,colid,value)
+
+    def get_dependent_caseid(self,rowid):
+        colid = global_data_var.get_dependent_caseid_colid()
+        dependent_caseid = self.excel.get_cell_value(rowid,colid)
+        return dependent_caseid
+
+    def get_dependent_caseid_rowid_by_casesid(self,dependent_caseid):
+        rowid = self.excel.get_rowid_by_cell_value(dependent_caseid)
+        return rowid
+
+    def get_dependent_caseid_rowid_by_rowid(self,rowid):
+        dependent_caseid = self.get_dependent_caseid(rowid)
+        dependent_rowid = self.get_dependent_caseid_rowid_by_casesid(dependent_caseid)
+        return dependent_rowid
+
+    def get_dependent_data_json_exep(self,rowid):
+        colid = global_data_var.get_dependent_data_json_exep_colid()
+        dependent_data_json_exep = self.excel.get_cell_value(rowid,colid)
+        return dependent_data_json_exep
+
+    def get_dependent_data_field(self,rowid):
+        colid = global_data_var.get_dependent_data_filed_colid()
+        dependent_data_field = self.excel.get_cell_value(rowid,colid)
+        return dependent_data_field
+#
 # def test_get_data():
 #     data = GetData()
 #     lines = data.get_lines()
@@ -79,5 +107,8 @@ class GetData():
 
 #     request_data = data.get_request_data(1)
 #     print(request_data)
-#
+
+    # dependent_caseid = data.get_dependent_caseid_rowid_by_rowid(5)
+    # print(dependent_caseid)
+
 # test_get_data()
