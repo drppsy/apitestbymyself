@@ -25,7 +25,7 @@ class RunMethod():
         if method == 'get':
             res = self.get_main(url=url,data=data,headers=headers)
         res = json.dumps(res,ensure_ascii=False,indent=2)
-        print(res)
+        # print(res)
         return res
 
 

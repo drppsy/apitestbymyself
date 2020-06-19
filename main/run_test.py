@@ -4,6 +4,7 @@ from base import run_method
 from data_config import get_data
 from utils import common_util
 from data_config import dependent_data
+from utils import send_email
 import json
 
 class RunTest():
@@ -13,9 +14,12 @@ class RunTest():
         self.testcases = get_data.GetData()
         self.is_contain = common_util.CommonUtil()
         self.depend_data = dependent_data.DependData()
+        self.send_mail = send_email.SendEmail()
 
     def run_main(self):
         lines = self.testcases.get_lines()
+        pass_list = []
+        fail_list = []
         for i in range(1,lines):
             is_run = self.testcases.get_is_run(i)
             if is_run:
@@ -35,9 +39,12 @@ class RunTest():
 
                 if self.is_contain.is_contain(expect,str(res)):
                     self.testcases.write_result(i,'pass')
+                    pass_list.append(i)
                 else:
                     self.testcases.write_result(i,res)
+                    fail_list.append(i)
             i += 1
+        self.send_mail.send_main(pass_list,fail_list)
 
 
 if __name__ == '__main__':
