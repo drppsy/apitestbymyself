@@ -5,6 +5,7 @@ import json
 class RunMethod():
 
     def post_main(self,url,data=None,headers=None):
+        data = json.dumps(data)
         if headers is not None:
             res = requests.post(url=url,data=data,headers=headers)
         else:
@@ -18,12 +19,31 @@ class RunMethod():
             res = requests.get(url=url,params=data)
         return res.json()
 
+    def put_main(self,url,data=None,headers=None):
+        data = json.dumps(data)
+        if headers is not None:
+            res = requests.put(url=url,data=data,headers=headers)
+        else:
+            res = requests.put(url=url,data=data)
+        return res.json()
+
+    def delete_main(self,url,data=None,headers=None):
+        if headers is not None:
+            res = requests.delete(url=url,data=data,headers=headers)
+        else:
+            res = requests.delete(url=url,data=data)
+        return res.json()
+
     def run_main(self,method,url,data=None,headers = None):
         res = None
         if method == 'post':
             res = self.post_main(url=url,data=data,headers=headers)
-        if method == 'get':
+        elif method == 'get':
             res = self.get_main(url=url,data=data,headers=headers)
+        elif method == 'put':
+            res = self.put_main(url=url,data=data,headers=headers)
+        else:
+            res = self.delete_main(url=url,data=data,headers=headers)
         res = json.dumps(res,ensure_ascii=False,indent=2)
         # print(res)
         return res

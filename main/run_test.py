@@ -25,7 +25,6 @@ class RunTest():
             if is_run:
                 url = self.testcases.get_request_url(i)
                 request_data = self.testcases.get_request_data(i)
-                request_data = json.loads(request_data)
                 request_method = self.testcases.get_request_method(i)
                 headers = self.testcases.get_headers(i)
                 expect = self.testcases.get_expect(i)

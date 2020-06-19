@@ -47,7 +47,7 @@ class GetData():
     def get_request_data(self,rowid):
         request_data_field = self.get_request_data_field(rowid)
         request_data = opera_json.OperaJson().get_data(request_data_field)
-        request_data = json.dumps(request_data)
+        request_data = json.loads(json.dumps(request_data))
         return request_data
 
     def get_headers(self,rowid):
