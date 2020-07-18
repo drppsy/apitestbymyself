@@ -42,7 +42,6 @@ class RunTest():
                 else:
                     self.testcases.write_result(i,res)
                     fail_list.append(i)
-            i += 1
         self.send_mail.send_main(pass_list,fail_list)
 
 
