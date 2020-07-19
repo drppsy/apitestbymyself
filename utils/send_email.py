@@ -1,7 +1,7 @@
 import smtplib
 from email.mime.text import MIMEText
 
-class SendEmail():
+class SendEmail:
     global send_user
     global email_host
     global password
@@ -9,7 +9,7 @@ class SendEmail():
     email_host = 'smtp.qq.com'
     password = 'atmokxcmxptifjad'
 
-    def send_mail(self,user_List,sub,content):
+    def send_mail(self, user_List, sub,content):
         user = '飞塔' + '<' + send_user + '>'
         server = smtplib.SMTP_SSL(email_host)
         server.ehlo(email_host)
@@ -21,13 +21,13 @@ class SendEmail():
 
         server.sendmail(user,user_List,message.as_string())
 
-    def send_main(self,pass_list,fail_list):
+    def send_main(self, pass_list, fail_list):
         pass_count = float(len(pass_list))
         fail_count = float(len(fail_list))
         num_count = pass_count + fail_count
 
-        pass_rate = pass_count*100/num_count
-        fail_rate = fail_count*100/num_count
+        pass_rate = '{:.2%}'.format(pass_count*100/num_count)
+        fail_rate = '{:.2%}'.format(fail_count*100/num_count)
 
         user = '飞塔'+ '<' + send_user + '>'
         user_list = ['feta6@qq.com','19930212@163.com']
