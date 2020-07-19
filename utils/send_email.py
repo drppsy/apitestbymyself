@@ -29,7 +29,6 @@ class SendEmail:
         pass_rate = '{:.2%}'.format(pass_count*100/num_count)
         fail_rate = '{:.2%}'.format(fail_count*100/num_count)
 
-        user = '飞塔'+ '<' + send_user + '>'
         user_list = ['feta6@qq.com','19930212@163.com']
         sub = '游犀社区BBS-Staging接口自动化测试报告'
         content = '此次一共运行%s个用例，其中通过%s个用例，失败%s个用例，成功率为%s，失败率为%s' %(num_count,pass_count,fail_count,pass_rate,fail_rate)
