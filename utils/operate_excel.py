@@ -1,7 +1,7 @@
 import os
 import xlrd
 from xlutils.copy import copy
-root_path = os.path.dirname(os.path.abspath("."))
+root_path = os.path.abspath("..")
 
 
 class OperaExcel():
