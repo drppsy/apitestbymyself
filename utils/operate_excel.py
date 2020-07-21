@@ -1,5 +1,8 @@
+import os
 import xlrd
 from xlutils.copy import copy
+root_path = os.path.dirname(os.path.abspath("."))
+
 
 class OperaExcel():
 
@@ -8,7 +11,7 @@ class OperaExcel():
             self.file_path = file_path
             self.sheet_id = sheet_id
         else:
-            self.file_path = 'D:/FETA/apitestbymyself/data/apitestcases.xlsx'
+            self.file_path = root_path + '/data/apitestcases.xlsx'
             self.sheet_id = 0
         self.table = self.get_table()
 

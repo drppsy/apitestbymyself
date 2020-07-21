@@ -1,4 +1,8 @@
 import json
+import os
+
+root_path = os.path.dirname(os.path.abspath("."))
+
 
 class OperaJson():
 
@@ -6,7 +10,7 @@ class OperaJson():
         self.data = self.read_data()
 
     def read_data(self):
-        with open('D:/FETA/apitestbymyself/data/request_data.json') as fp:
+        with open(root_path+'/data/request_data.json') as fp:
             data = json.load(fp)
             return data
 

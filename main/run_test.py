@@ -1,11 +1,9 @@
-import sys
-sys.path.append('D:/FETA/apitestbymyself')
 from base import run_method
 from data_config import get_data
 from utils import common_util
 from data_config import dependent_data
 from utils import send_email
-import json
+
 
 class RunTest():
 

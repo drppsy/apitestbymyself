@@ -1,13 +1,12 @@
 from base import run_method
 from . import get_data
-from jsonpath_rw import jsonpath,parse
+from jsonpath_rw import parse
 import json
 # import get_data
 
 class DependData():
 
     def __init__(self):
-        # self.excel = operate_excel.OperaExcel()
         self.data = get_data.GetData()
 
     def get_dependent_case_rowid(self,rowid):
