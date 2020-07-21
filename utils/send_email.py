@@ -26,8 +26,8 @@ class SendEmail:
         fail_count = float(len(fail_list))
         num_count = pass_count + fail_count
 
-        pass_rate = '{:.2%}'.format(pass_count*100/num_count)
-        fail_rate = '{:.2%}'.format(fail_count*100/num_count)
+        pass_rate = '{:.2%}'.format(pass_count/num_count)
+        fail_rate = '{:.2%}'.format(fail_count/num_count)
 
         user_list = ['feta6@qq.com','19930212@163.com']
         sub = '游犀社区BBS-Staging接口自动化测试报告'

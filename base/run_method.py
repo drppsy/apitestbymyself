@@ -1,6 +1,6 @@
 import requests
 import json
-
+from data_config import handle_ini
 
 class RunMethod():
 
@@ -36,6 +36,8 @@ class RunMethod():
 
     def run_main(self,method,url,data=None,headers = None):
         res = None
+        base_url = handle_ini.HandleIni().getIni('server','host')
+        url = base_url + url
         if method == 'post':
             res = self.post_main(url=url,data=data,headers=headers)
         elif method == 'get':
