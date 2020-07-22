@@ -33,6 +33,7 @@ class RunTest():
                     request_data[dependent_data_field] = dependent_data_value
 
                 res = self.run.run_main(method=request_method,url=url,data=request_data,headers=headers)
+                # print(res)
 
                 if self.is_contain.is_contain(expect,str(res)):
                     self.testcases.write_result(i,'pass')

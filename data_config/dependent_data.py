@@ -4,7 +4,8 @@ from jsonpath_rw import parse
 import json
 # import get_data
 
-class DependData():
+
+class DependData:
 
     def __init__(self):
         self.data = get_data.GetData()
@@ -32,6 +33,7 @@ class DependData():
         return [math.value for math in madle][0]
 
 
+
 # def test_depend_data():
 #     dependdata = DependData()
 #     res = dependdata.get_res(5)
@@ -39,5 +41,11 @@ class DependData():
 #
 #     value = dependdata.get_dependent_data_value(5)
 #     print(value)
+#
+#     headers_res = dependdata.get_res_for_headers(3)
+#     print(headers_res)
+#
+#     headers_val = dependdata.get_dependent_data_value_for_headers(3)
+#     print(headers_val)
 #
 # test_depend_data()

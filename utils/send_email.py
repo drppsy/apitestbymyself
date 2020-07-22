@@ -10,7 +10,7 @@ class SendEmail:
     password = 'atmokxcmxptifjad'
 
     def send_mail(self, user_List, sub,content):
-        user = '飞塔' + '<' + send_user + '>'
+        user = send_user
         server = smtplib.SMTP_SSL(email_host)
         server.ehlo(email_host)
         server.login(send_user,password)
@@ -29,7 +29,7 @@ class SendEmail:
         pass_rate = '{:.2%}'.format(pass_count/num_count)
         fail_rate = '{:.2%}'.format(fail_count/num_count)
 
-        user_list = ['feta6@qq.com','19930212@163.com']
+        user_list = ['feta6@qq.com','feta19930212@163.com']
         sub = '游犀社区BBS-Staging接口自动化测试报告'
         content = '此次一共运行%s个用例，其中通过%s个用例，失败%s个用例，成功率为%s，失败率为%s' %(num_count,pass_count,fail_count,pass_rate,fail_rate)
         self.send_mail(user_list,sub,content)

@@ -7,10 +7,11 @@ class global_var:
     headers = '5'
     dependent_caseid = '6'
     dependent_data_json_exep = '7'
-    dependent_data_filed = '8'
-    request_data = '9'
-    expect = '10'
-    result = '11'
+    dependent_data_key = '8'
+    dependent_data_filed = '9'
+    request_data = '10'
+    expect = '11'
+    result = '12'
 
 def get_caseid_colid():
     return int(global_var.Id)
@@ -44,3 +45,6 @@ def get_dependent_data_json_exep_colid():
 
 def get_dependent_data_filed_colid():
     return int(global_var.dependent_data_filed)
+
+def get_dependent_data_key_colid():
+    return int(global_var.dependent_data_key)
